@@ -1,6 +1,7 @@
 /**
  * HumAi Landing Page — Main Application Scripts
- * Manages interactive simulator, pricing switch, FAQ accordions, feature tabs, and sticky elements.
+ * Manages interactive simulator, dark/light theme switcher, mobile sidebar drawer,
+ * pricing switch, FAQ accordions, feature tabs, and sticky elements.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +11,115 @@ document.addEventListener('DOMContentLoaded', () => {
   const lang = document.documentElement.getAttribute('lang') || 'ar';
 
   // --------------------------------------------------------------------------
-  // 1. WhatsApp Executive Assistant Interactive Simulator
+  // 1. Dark Mode / Light Mode Engine (Default: Dark Mode)
+  // --------------------------------------------------------------------------
+  const htmlRoot = document.documentElement;
+  const themeButtons = document.querySelectorAll('.theme-toggle-btn');
+
+  // Moon icon SVG for dark mode, Sun icon SVG for light mode
+  const moonIcon = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  `;
+  const sunIcon = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  `;
+
+  function applyTheme(theme) {
+    htmlRoot.setAttribute('data-theme', theme);
+    localStorage.setItem('humai_theme', theme);
+
+    themeButtons.forEach(btn => {
+      if (theme === 'dark') {
+        btn.innerHTML = sunIcon;
+        btn.setAttribute('title', isRTL ? 'التحويل للوضع الفاتح' : 'Switch to Light Mode');
+        btn.setAttribute('aria-label', isRTL ? 'التحويل للوضع الفاتح' : 'Switch to Light Mode');
+      } else {
+        btn.innerHTML = moonIcon;
+        btn.setAttribute('title', isRTL ? 'التحويل للوضع الليلي' : 'Switch to Dark Mode');
+        btn.setAttribute('aria-label', isRTL ? 'التحويل للوضع الليلي' : 'Switch to Dark Mode');
+      }
+    });
+  }
+
+  // Load saved theme or default to 'dark'
+  const savedTheme = localStorage.getItem('humai_theme') || 'dark';
+  applyTheme(savedTheme);
+
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentTheme = htmlRoot.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+      if (window.HumAiAnalytics) {
+        window.HumAiAnalytics.track('theme_toggled', { theme: newTheme });
+      }
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 2. Mobile Sidebar Drawer Toggle
+  // --------------------------------------------------------------------------
+  const mobileMenuBtn = document.querySelector('#mobile-menu-btn');
+  const mobileDrawer = document.querySelector('#mobile-sidebar-drawer');
+  const mobileBackdrop = document.querySelector('#mobile-sidebar-backdrop');
+  const mobileDrawerClose = document.querySelector('#mobile-drawer-close');
+  const mobileDrawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+  function openMobileDrawer() {
+    if (mobileDrawer && mobileBackdrop) {
+      mobileDrawer.classList.add('active');
+      mobileBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden'; // prevent background scrolling
+      if (window.HumAiAnalytics) {
+        window.HumAiAnalytics.track('mobile_sidebar_opened');
+      }
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer && mobileBackdrop) {
+      mobileDrawer.classList.remove('active');
+      mobileBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', openMobileDrawer);
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (mobileBackdrop) {
+    mobileBackdrop.addEventListener('click', closeMobileDrawer);
+  }
+
+  mobileDrawerLinks.forEach(link => {
+    link.addEventListener('click', closeMobileDrawer);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('active')) {
+      closeMobileDrawer();
+    }
+  });
+
+  // --------------------------------------------------------------------------
+  // 3. WhatsApp Executive Assistant Interactive Simulator
   // --------------------------------------------------------------------------
   const waScenarios = {
     attendance: {
@@ -143,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const scenario = waScenarios[scenarioKey] ? waScenarios[scenarioKey][lang] : null;
     if (!scenario) return;
 
-    // Build chat markup
     let pointsHtml = scenario.botPoints.map(pt => `<div style="margin-block: 2px;">${pt}</div>`).join('');
     
     let actionHtml = '';
@@ -176,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Bind action button if present
     const confirmBtn = document.querySelector('#wa-confirm-btn');
     if (confirmBtn) {
       confirmBtn.addEventListener('click', () => {
@@ -195,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Handle Scenario Tab Clicks
   waTabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       waTabButtons.forEach(b => b.classList.remove('active'));
@@ -209,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 2. Pricing Toggle (Monthly vs Annual)
+  // 4. Pricing Toggle (Monthly vs Annual)
   // --------------------------------------------------------------------------
   const pricingButtons = document.querySelectorAll('.pricing-switch-btn');
   const aiPriceAmount = document.querySelector('#pricing-ai-amount');
@@ -237,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 3. Platform Feature Category Tabs (Section 7)
+  // 5. Platform Feature Category Tabs (Section 7)
   // --------------------------------------------------------------------------
   const featureCategoryButtons = document.querySelectorAll('.feature-nav-btn');
   const featureCards = document.querySelectorAll('.feature-card');
@@ -260,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 4. FAQ Accordion
+  // 6. FAQ Accordion
   // --------------------------------------------------------------------------
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -271,7 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
     questionBtn.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
       
-      // Close all other items for clean accordion UX
       faqItems.forEach(otherItem => {
         otherItem.classList.remove('active');
         const otherBtn = otherItem.querySelector('.faq-question-btn');
@@ -290,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 5. Mobile Sticky Bottom Action Bar Visibility
+  // 7. Mobile Sticky Bottom Action Bar Visibility
   // --------------------------------------------------------------------------
   const mobileStickyBar = document.querySelector('#mobile-sticky-bar');
   const heroSection = document.querySelector('#hero');
@@ -299,7 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileStickyBar && heroSection && 'IntersectionObserver' in window) {
     const stickyObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // If hero is out of view, show sticky bar on mobile
         if (!entry.isIntersecting && window.innerWidth <= 768) {
           mobileStickyBar.classList.add('visible');
         } else {
@@ -310,7 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stickyObserver.observe(heroSection);
 
-    // Hide sticky bar when footer is in view
     if (footerSection) {
       const footerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -324,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 6. Global CTA Event Delegation
+  // 8. Global CTA Event Delegation
   // --------------------------------------------------------------------------
   document.addEventListener('click', (e) => {
     const target = e.target.closest('[data-analytics-event]');
@@ -343,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 7. Initialize first simulator state
+  // 9. Initialize first simulator state
   // --------------------------------------------------------------------------
   renderScenario('attendance');
 });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,9 +38,12 @@
   <header class="site-nav">
     <div class="container nav-container">
       <a href="#hero" class="nav-brand" aria-label="HumAi Home">
-        <img src="../assets/logo/humai-logo.svg" alt="HumAi Logo" class="nav-logo-img">
+        <!-- Dual Logo: Auto-switches based on Dark / Light theme -->
+        <img src="../assets/logo/humai-logo-white.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-white">
+        <img src="../assets/logo/humai-logo.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-dark">
       </a>
 
+      <!-- Desktop Navigation Links -->
       <nav class="nav-links" aria-label="Main Navigation">
         <a href="#problem" class="nav-link">Why HumAi</a>
         <a href="#ai-assistant" class="nav-link">AI Assistant</a>
@@ -57,12 +60,114 @@
           <span class="lang-btn active">English</span>
         </div>
 
+        <!-- Dark / Light Mode Toggle Button -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- CTA Button (Desktop) -->
         <a href="#pricing" class="btn btn-primary btn-sm" data-analytics-event="click_start_trial" data-analytics-location="nav">
           Start Free Trial
         </a>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Open mobile navigation drawer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- ========================================================================
+       Mobile Sidebar Drawer & Backdrop
+       ======================================================================== -->
+  <div class="mobile-sidebar-backdrop" id="mobile-sidebar-backdrop"></div>
+  
+  <aside class="mobile-sidebar-drawer" id="mobile-sidebar-drawer" aria-label="Mobile Navigation Sidebar">
+    <div class="mobile-drawer-header">
+      <a href="#hero" class="nav-brand">
+        <img src="../assets/logo/humai-logo-white.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-white" style="height: 32px;">
+        <img src="../assets/logo/humai-logo.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-dark" style="height: 32px;">
+      </a>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close navigation drawer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <nav class="mobile-drawer-nav">
+      <a href="#problem" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>Why HumAi</span>
+      </a>
+      <a href="#ai-assistant" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>WhatsApp Assistant</span>
+      </a>
+      <a href="#features" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Platform Ecosystem</span>
+      </a>
+      <a href="#blueprints" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <span>10 Management Blueprints</span>
+      </a>
+      <a href="#pricing" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span>Pricing & Plans</span>
+      </a>
+      <a href="#faq" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        <span>FAQ</span>
+      </a>
+    </nav>
+
+    <!-- Drawer Footer Actions -->
+    <div class="mobile-drawer-footer">
+      <div class="mobile-drawer-toggles">
+        <!-- Mobile Language Selector -->
+        <div class="lang-switcher">
+          <a href="../index.html" class="lang-btn">العربية</a>
+          <span class="lang-btn active">English</span>
+        </div>
+
+        <!-- Mobile Dark/Light Theme Button -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+          </svg>
+        </button>
+      </div>
+
+      <a href="#pricing" class="btn btn-primary" style="width: 100%;" data-analytics-event="click_start_trial" data-analytics-location="mobile_drawer">
+        Start Free Trial
+      </a>
+
+      <a href="https://wa.me/201099887766?text=Hello%2C%20I%20would%20like%20to%20learn%20more%20about%20HumAi" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;" data-analytics-event="click_whatsapp" data-analytics-location="mobile_drawer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </aside>
 
   <!-- ========================================================================
        SECTION 1 — HERO
@@ -120,8 +225,8 @@
                 <div class="mockup-user">
                   <div class="mockup-avatar">HQ</div>
                   <div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #1F2937;">New Cairo Branch • Main Office</div>
-                    <div style="font-size: 0.75rem; color: #64748B;">Live Geofence Telemetry Active</div>
+                    <div style="font-weight: 800; font-size: 0.95rem; color: var(--text-primary);">New Cairo Branch • Main Office</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Live Geofence Telemetry Active</div>
                   </div>
                 </div>
                 <div class="eyebrow eyebrow-navy" style="margin: 0; padding: 0.2rem 0.6rem; font-size: 0.75rem;">
@@ -143,8 +248,8 @@
                 </div>
                 <div class="stat-card">
                   <div class="stat-label">Payroll Run Status</div>
-                  <div class="stat-value">Audited</div>
-                  <div class="stat-change" style="color: #10B981;">✓ Auto-reconciled</div>
+                  <div class="stat-value" style="font-size: 1.15rem;">Audited</div>
+                  <div class="stat-change" style="color: var(--brand-emerald);">✓ Auto-reconciled</div>
                 </div>
               </div>
 
@@ -191,7 +296,7 @@
                     <div class="wa-status">Online • Ready to execute</div>
                   </div>
                 </div>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
               </div>
 
               <div class="wa-body">
@@ -207,7 +312,7 @@
                     • Mariam Saeed — 12 mins late<br>
                     • Omar Khaled — 8 mins late
                   </div>
-                  <div style="margin-top: 6px; font-size: 0.8rem; color: #10B981;">Branch attendance: 91%</div>
+                  <div style="margin-top: 6px; font-size: 0.8rem; color: var(--brand-emerald);">Branch attendance: 91%</div>
                   <div class="wa-msg-time">09:35 AM</div>
                 </div>
 
@@ -216,10 +321,10 @@
                   <div class="wa-msg-time">09:37 AM ✓✓</div>
                 </div>
 
-                <div class="wa-msg wa-msg-bot">
+                <div class="wa-msg wa-bot-msg wa-msg-bot">
                   <div>Mahmoud Adel (Sales) achieved 118% of quota.</div>
                   <div class="wa-action-box">
-                    <div style="font-size: 0.8rem; color: #10B981; font-weight: 700;">
+                    <div style="font-size: 0.8rem; color: var(--brand-emerald); font-weight: 700;">
                       Bonus: 500 EGP ready for current payroll cycle.
                     </div>
                     <button class="wa-action-btn" onclick="alert('Bonus of 500 EGP approved and automatically reconciled with current payroll.')">
@@ -406,14 +511,14 @@
       <div class="diff-container">
         <!-- Traditional HR Software -->
         <div class="diff-card-standard">
-          <div style="font-size: 0.85rem; font-weight: 800; color: #64748B; text-transform: uppercase; margin-bottom: var(--space-3);">
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-3);">
             Traditional HR Software
           </div>
-          <h3 style="font-size: 1.4rem; margin-bottom: var(--space-4); color: #334155;">Stores Records. Period.</h3>
-          <p style="font-size: 0.95rem; color: #64748B; margin-bottom: var(--space-6);">
+          <h3 style="font-size: 1.4rem; margin-bottom: var(--space-4); color: var(--text-primary);">Stores Records. Period.</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: var(--space-6);">
             A passive web portal where you enter employee details, export attendance CSVs, and navigate clunky submenus just to find a single overtime calculation.
           </p>
-          <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #475569;">
+          <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--text-secondary);">
             <li>✕ Requires lengthy employee onboarding and training</li>
             <li>✕ Disconnected from daily executive decisions</li>
             <li>✕ Must open a laptop and log in just to see who's late</li>
@@ -430,7 +535,7 @@
           <h3 style="font-size: 1.6rem; margin-bottom: var(--space-4); color: #FFFFFF;">
             HR Platform + Operations + WhatsApp AI + 10 Blueprints
           </h3>
-          <p style="font-size: 1rem; color: #94A3B8; margin-bottom: var(--space-6);">
+          <p style="font-size: 1rem; color: #CBD5E1; margin-bottom: var(--space-6);">
             HumAi doesn't just store records. It analyzes real-time data, lets you ask and execute directly via WhatsApp, and provides 10 proven management playbooks to scale your team.
           </p>
           <ul style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: #E2E8F0;">
@@ -464,7 +569,7 @@
       <div class="section-header">
         <div class="eyebrow eyebrow-dark">Breakthrough Capability</div>
         <h2>Meet the Manager That Lives in Your WhatsApp.</h2>
-        <p class="text-lead" style="color: #94A3B8;">
+        <p class="text-lead" style="color: var(--text-secondary);">
           <strong>Ask. Decide. Act.</strong> Without opening your dashboard. Connected directly to your company's live operational telemetry.
         </p>
       </div>
@@ -523,7 +628,7 @@
                 <div class="wa-status">Secure WhatsApp Channel • Active</div>
               </div>
             </div>
-            <div style="color: #10B981; font-size: 0.8rem; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 99px;">
+            <div style="color: var(--brand-emerald); font-size: 0.8rem; font-weight: 700; background: rgba(16,185,129,0.12); padding: 4px 10px; border-radius: 99px;">
               Live Interactive Simulator
             </div>
           </div>
@@ -590,7 +695,7 @@
       <div class="era-contrast">
         <!-- Traditional Way -->
         <div class="era-card era-traditional">
-          <div style="font-size: 0.85rem; font-weight: 800; color: #DC2626; text-transform: uppercase;">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #EF4444; text-transform: uppercase;">
             Traditional Company (6 Slow Friction Points)
           </div>
           <h4 style="margin-top: var(--space-2); font-size: 1.25rem;">To execute a routine bonus or leave approval:</h4>
@@ -632,11 +737,11 @@
 
           <div class="era-steps">
             <div class="era-step">
-              <span class="era-step-num" style="background: #10B981; color: #FFFFFF;">1</span>
+              <span class="era-step-num" style="background: var(--brand-emerald); color: #FFFFFF;">1</span>
               <span>Send a quick text or voice note: "Add a 500 EGP bonus for Mahmoud for hitting quota."</span>
             </div>
             <div class="era-step">
-              <span class="era-step-num" style="background: #10B981; color: #FFFFFF;">2</span>
+              <span class="era-step-num" style="background: var(--brand-emerald); color: #FFFFFF;">2</span>
               <span>HumAi verifies target attainment, prepares the entry, and you tap "Confirm" to reconcile immediately into the payroll run.</span>
             </div>
           </div>
@@ -971,10 +1076,10 @@
           <p>
             Complete HR platform + Geofenced attendance + Egyptian payroll engine + WhatsApp AI executive assistant + 10 management blueprints.
           </p>
-          <div style="font-size: 2.5rem; font-weight: 900; color: #10B981; margin-bottom: var(--space-2);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--brand-emerald); margin-bottom: var(--space-2);">
             3,800 EGP
           </div>
-          <div style="color: #94A3B8; font-size: 0.95rem; margin-bottom: var(--space-6);">
+          <div style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-6);">
             Complete platform + 10 Blueprints FREE + AI Assistant 1st Month FREE.
           </div>
           <a href="#pricing" class="btn btn-primary" style="width: 100%;" data-analytics-event="click_start_trial" data-analytics-location="roi_card">
@@ -1015,11 +1120,11 @@
 
           <div class="pricing-header">
             <div>
-              <div style="font-size: 0.85rem; font-weight: 800; color: #10B981; text-transform: uppercase;">
+              <div style="font-size: 0.85rem; font-weight: 800; color: var(--brand-emerald); text-transform: uppercase;">
                 Intelligent Operations Platform
               </div>
-              <h3 style="font-size: 2rem; color: #1F2937; margin-top: 4px;">HumAi Core Platform</h3>
-              <p style="color: #64748B; font-size: 0.95rem; margin-top: 4px;">
+              <h3 style="font-size: 2rem; color: var(--text-primary); margin-top: 4px;">HumAi Core Platform</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">
                 Complete cloud platform for employee management and operations.
               </p>
             </div>
@@ -1040,24 +1145,24 @@
             </div>
 
             <div class="offer-layer-box highlight">
-              <div class="offer-layer-tag" style="color: #047857;">Exclusive Value Bonus</div>
+              <div class="offer-layer-tag" style="color: var(--brand-emerald);">Exclusive Value Bonus</div>
               <div class="offer-layer-title">10 Management Blueprints</div>
-              <div class="offer-layer-price" style="color: #047857;">FREE (Included)</div>
+              <div class="offer-layer-price" style="color: var(--brand-emerald);">FREE (Included)</div>
             </div>
 
             <div class="offer-layer-box highlight">
-              <div class="offer-layer-tag" style="color: #047857;">Executive Assistant</div>
+              <div class="offer-layer-tag" style="color: var(--brand-emerald);">Executive Assistant</div>
               <div class="offer-layer-title">WhatsApp AI Assistant</div>
-              <div class="offer-layer-price" style="color: #047857;">1st Month FREE</div>
+              <div class="offer-layer-price" style="color: var(--brand-emerald);">1st Month FREE</div>
             </div>
           </div>
 
           <!-- Post-trial AI Pricing Detail Box -->
-          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2);">
-            <div style="font-size: 0.9rem; color: #475569;">
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2);">
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">
               <strong>WhatsApp AI Assistant renewal after free trial month:</strong>
             </div>
-            <div style="font-weight: 800; font-size: 1.1rem; color: #1F2937;">
+            <div style="font-weight: 800; font-size: 1.1rem; color: var(--text-primary);">
               <span id="pricing-ai-amount">4,000</span>
               <span id="pricing-ai-period">EGP / year</span>
               <span id="pricing-savings-notice" class="badge-save" style="font-size: 0.8rem;">Save 3,200 EGP vs monthly renewal (600 EGP/mo)</span>
@@ -1104,7 +1209,7 @@
             <a href="https://wa.me/201099887766?text=Hello%2C%20I%20would%20like%20to%20start%20my%20HumAi%20free%20trial" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" style="width: 100%; font-size: 1.2rem;" data-analytics-event="click_start_trial" data-analytics-location="pricing_card">
               Start Your Free Trial (Full Access)
             </a>
-            <div style="margin-top: var(--space-3); font-size: 0.85rem; color: #64748B;">
+            <div style="margin-top: var(--space-3); font-size: 0.85rem; color: var(--text-muted);">
               No credit card required • Instant setup in under 30 minutes
             </div>
           </div>
@@ -1459,7 +1564,7 @@
           </a>
         </div>
 
-        <div style="color: #64748B; font-size: 0.9rem; margin-top: var(--space-4);">
+        <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: var(--space-4);">
           No complex implementation • No credit card required • Dedicated setup assistance
         </div>
       </div>
@@ -1471,7 +1576,8 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="../assets/logo/humai-logo-white.svg" alt="HumAi" style="height: 36px; width: auto;">
+          <img src="../assets/logo/humai-logo-white.svg" alt="HumAi" class="nav-logo-white" style="height: 36px; width: auto;">
+          <img src="../assets/logo/humai-logo.svg" alt="HumAi" class="nav-logo-dark" style="height: 36px; width: auto;">
           <p>
             The unified HR, operations, and WhatsApp AI executive assistant platform built for modern small and medium businesses.
           </p>
@@ -1501,7 +1607,7 @@
           <h5>Localization</h5>
           <div class="footer-links">
             <a href="../index.html" class="footer-link">العربية (Arabic Native)</a>
-            <a href="index.html" class="footer-link" style="color: #10B981; font-weight: 700;">English (Active)</a>
+            <a href="index.html" class="footer-link" style="color: var(--brand-emerald); font-weight: 700;">English (Active)</a>
             <a href="https://wa.me/201099887766" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp Contact</a>
           </div>
         </div>
@@ -1509,7 +1615,7 @@
 
       <div class="footer-bottom">
         <div>All rights reserved © 2026 HumAi Platform.</div>
-        <div style="font-size: 0.85rem; color: #64748B;">
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
           Engineered for ambitious businesses across Egypt and the MENA region.
         </div>
       </div>
@@ -1528,6 +1634,24 @@
       Start Free Trial
     </a>
   </div>
+
+  <!-- ========================================================================
+       Floating WhatsApp Button (In Corner with Ripple Effect)
+       ======================================================================== -->
+  <a href="https://wa.me/201099887766?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20HumAi" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="wa-floating-btn" 
+     id="wa-floating-btn" 
+     aria-label="Chat with us on WhatsApp" 
+     data-analytics-event="click_whatsapp" 
+     data-analytics-location="floating_corner">
+    <span class="wa-pulse-ring"></span>
+    <svg class="wa-floating-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.33c-.24.69-1.21 1.27-1.68 1.35-.44.08-.99.12-3.18-.75-2.62-1.04-4.32-3.71-4.45-3.89-.13-.17-1.07-1.42-1.07-2.72s.67-1.93.92-2.19c.24-.26.53-.33.71-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.23.54.77 1.88.84 2.02.07.14.11.31.02.5-.09.18-.14.3-.28.46-.14.16-.3.35-.43.47-.14.14-.29.3-.12.59.16.29.73 1.2 1.57 1.95 1.08.96 1.98 1.26 2.27 1.4.29.14.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.38-.24.64-.14.26.1.1.66 3.28 1.63.18.09.31.14.36.21.05.08.05.45-.19 1.14z"/>
+    </svg>
+    <span>Chat on WhatsApp</span>
+  </a>
 
   <!-- Scripts -->
   <script src="../js/analytics.js"></script>

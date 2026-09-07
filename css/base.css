@@ -39,6 +39,7 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   position: relative;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* Accessible focus ring */
@@ -137,19 +138,8 @@ p {
 }
 
 .section-dark {
-  background-color: var(--brand-navy-dark);
-  color: var(--text-inverse);
-}
-
-.section-dark h1,
-.section-dark h2,
-.section-dark h3,
-.section-dark h4 {
-  color: var(--text-inverse);
-}
-
-.section-dark p {
-  color: var(--text-inverse-muted);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .section-muted {
@@ -176,11 +166,10 @@ p {
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background-color: var(--brand-emerald-light);
-  color: var(--brand-emerald-dark);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  letter-spacing: 0.03em;
+  background-color: var(--eyebrow-bg);
+  color: var(--eyebrow-color);
+  border: 1px solid var(--eyebrow-border);
   margin-bottom: var(--space-4);
 }
 
@@ -191,6 +180,12 @@ p {
 }
 
 .eyebrow-navy {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--brand-emerald);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="light"] .eyebrow-navy {
   background: rgba(31, 41, 55, 0.06);
   color: var(--brand-navy);
   border-color: rgba(31, 41, 55, 0.15);
@@ -221,7 +216,7 @@ p {
 .btn-primary:hover {
   background-color: var(--brand-emerald-hover);
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -6px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 14px 28px -6px rgba(16, 185, 129, 0.45);
 }
 
 .btn-primary:active {
@@ -229,37 +224,39 @@ p {
 }
 
 .btn-secondary {
-  background-color: #FFFFFF;
-  color: var(--brand-navy);
+  background-color: var(--bg-card);
+  color: var(--text-primary);
   border: 1px solid var(--border-medium);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-secondary);
-  border-color: var(--brand-navy-light);
+  background-color: var(--bg-card-hover);
+  border-color: var(--brand-emerald);
   transform: translateY(-2px);
 }
 
 .btn-dark {
-  background-color: var(--brand-navy);
-  color: #FFFFFF;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
 }
 
 .btn-dark:hover {
-  background-color: var(--brand-navy-dark);
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-medium);
   transform: translateY(-2px);
 }
 
 .btn-ghost-dark {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .btn-ghost-dark:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--brand-emerald);
   transform: translateY(-2px);
 }
 
@@ -275,12 +272,12 @@ p {
 }
 
 .btn-whatsapp {
-  background-color: #25D366;
+  background-color: var(--wa-green);
   color: #FFFFFF;
 }
 
 .btn-whatsapp:hover {
-  background-color: #20BA5A;
+  background-color: var(--wa-green-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px -5px rgba(37, 211, 102, 0.4);
 }
@@ -301,12 +298,13 @@ p {
   gap: var(--space-4) var(--space-8);
   margin-top: var(--space-6);
   padding: var(--space-3) var(--space-6);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid var(--border-subtle);
+  background: var(--trust-strip-bg);
+  border: 1px solid var(--trust-strip-border);
   border-radius: var(--radius-full);
   width: fit-content;
   margin-inline: auto;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .trust-item {
@@ -323,6 +321,15 @@ p {
   height: 16px;
   color: var(--brand-emerald);
   flex-shrink: 0;
+}
+
+/* Logo Theme Switching */
+.nav-logo-dark {
+  display: var(--logo-dark-display);
+}
+
+.nav-logo-white {
+  display: var(--logo-white-display);
 }
 
 /* Screen Reader Only */

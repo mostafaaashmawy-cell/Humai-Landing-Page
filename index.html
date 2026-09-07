@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,9 +38,12 @@
   <header class="site-nav">
     <div class="container nav-container">
       <a href="#hero" class="nav-brand" aria-label="HumAi الرئيسية">
-        <img src="assets/logo/humai-logo.svg" alt="HumAi Logo" class="nav-logo-img">
+        <!-- Dual Logo: Auto-switches based on Dark / Light theme -->
+        <img src="assets/logo/humai-logo-white.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-white">
+        <img src="assets/logo/humai-logo.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-dark">
       </a>
 
+      <!-- Desktop Navigation Links -->
       <nav class="nav-links" aria-label="روابط التنقل">
         <a href="#problem" class="nav-link">لماذا HumAi؟</a>
         <a href="#ai-assistant" class="nav-link">مساعد واتساب الذكي</a>
@@ -57,12 +60,114 @@
           <a href="en/index.html" class="lang-btn" title="Switch to English">English</a>
         </div>
 
+        <!-- Dark / Light Mode Toggle Button -->
+        <button type="button" class="theme-toggle-btn" aria-label="تبديل المظهر (ليلي / فاتح)" title="تبديل المظهر">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- CTA Button (Desktop) -->
         <a href="#pricing" class="btn btn-primary btn-sm" data-analytics-event="click_start_trial" data-analytics-location="nav">
           ابدأ تجربتك المجانية
         </a>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="فتح القائمة الجانبية">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- ========================================================================
+       Mobile Sidebar Drawer & Backdrop
+       ======================================================================== -->
+  <div class="mobile-sidebar-backdrop" id="mobile-sidebar-backdrop"></div>
+  
+  <aside class="mobile-sidebar-drawer" id="mobile-sidebar-drawer" aria-label="القائمة الجانبية للموبايل">
+    <div class="mobile-drawer-header">
+      <a href="#hero" class="nav-brand">
+        <img src="assets/logo/humai-logo-white.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-white" style="height: 32px;">
+        <img src="assets/logo/humai-logo.svg" alt="HumAi Logo" class="nav-logo-img nav-logo-dark" style="height: 32px;">
+      </a>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="إغلاق القائمة">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <nav class="mobile-drawer-nav">
+      <a href="#problem" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>لماذا HumAi؟</span>
+      </a>
+      <a href="#ai-assistant" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>مساعد واتساب الذكي</span>
+      </a>
+      <a href="#features" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>المنظومة الكاملة</span>
+      </a>
+      <a href="#blueprints" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <span>الـ 10 Blueprints الإدارية</span>
+      </a>
+      <a href="#pricing" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span>خطط الأسعار</span>
+      </a>
+      <a href="#faq" class="mobile-drawer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        <span>الأسئلة الشائعة</span>
+      </a>
+    </nav>
+
+    <!-- Drawer Footer Actions -->
+    <div class="mobile-drawer-footer">
+      <div class="mobile-drawer-toggles">
+        <!-- Mobile Language Selector -->
+        <div class="lang-switcher">
+          <span class="lang-btn active">العربية</span>
+          <a href="en/index.html" class="lang-btn">English</a>
+        </div>
+
+        <!-- Mobile Dark/Light Theme Button -->
+        <button type="button" class="theme-toggle-btn" aria-label="تبديل المظهر">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+          </svg>
+        </button>
+      </div>
+
+      <a href="#pricing" class="btn btn-primary" style="width: 100%;" data-analytics-event="click_start_trial" data-analytics-location="mobile_drawer">
+        ابدأ تجربتك المجانية
+      </a>
+
+      <a href="https://wa.me/201099887766?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D8%B9%20%D9%81%D8%B1%D9%8A%D9%82%20HumAi" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;" data-analytics-event="click_whatsapp" data-analytics-location="mobile_drawer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+        محادثة واتساب مباشرة
+      </a>
+    </div>
+  </aside>
 
   <!-- ========================================================================
        SECTION 1 — HERO
@@ -120,8 +225,8 @@
                 <div class="mockup-user">
                   <div class="mockup-avatar">م.ع</div>
                   <div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #1F2937;">فرع التجمع الخامس • الرئيسي</div>
-                    <div style="font-size: 0.75rem; color: #64748B;">تحديث مباشر الآن عبر الـ Geofencing</div>
+                    <div style="font-weight: 800; font-size: 0.95rem; color: var(--text-primary);">فرع التجمع الخامس • الرئيسي</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">تحديث مباشر الآن عبر الـ Geofencing</div>
                   </div>
                 </div>
                 <div class="eyebrow eyebrow-navy" style="margin: 0; padding: 0.2rem 0.6rem; font-size: 0.75rem;">
@@ -143,8 +248,8 @@
                 </div>
                 <div class="stat-card">
                   <div class="stat-label">مسير الرواتب المعتمد</div>
-                  <div class="stat-value">جاهز للصرف</div>
-                  <div class="stat-change" style="color: #10B981;">✓ تم التدقيق التلقائي</div>
+                  <div class="stat-value" style="font-size: 1.15rem;">جاهز للصرف</div>
+                  <div class="stat-change" style="color: var(--brand-emerald);">✓ تم التدقيق التلقائي</div>
                 </div>
               </div>
 
@@ -191,7 +296,7 @@
                     <div class="wa-status">متصل الآن • جاهز للأوامر</div>
                   </div>
                 </div>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
               </div>
 
               <div class="wa-body">
@@ -207,7 +312,7 @@
                     • مريم سعيد — متأخرة 12 دقيقة<br>
                     • عمر خالد — متأخر 8 دقائق
                   </div>
-                  <div style="margin-top: 6px; font-size: 0.8rem; color: #10B981;">نسبة الحضور بالفرع: 91%</div>
+                  <div style="margin-top: 6px; font-size: 0.8rem; color: var(--brand-emerald);">نسبة الحضور بالفرع: 91%</div>
                   <div class="wa-msg-time">09:35 ص</div>
                 </div>
 
@@ -219,7 +324,7 @@
                 <div class="wa-msg wa-msg-bot">
                   <div>محمود عادل (مبيعات) حقق 118% من التارجت.</div>
                   <div class="wa-action-box">
-                    <div style="font-size: 0.8rem; color: #10B981; font-weight: 700;">
+                    <div style="font-size: 0.8rem; color: var(--brand-emerald); font-weight: 700;">
                       مكافأة: 500 EGP ستُضاف لمسير رواتب الشهر الحالي.
                     </div>
                     <button class="wa-action-btn" onclick="alert('تم اعتماد المكافأة بنجاح وسيتم إدراجها في مسير الرواتب تلقائيًا.')">
@@ -406,14 +511,14 @@
       <div class="diff-container">
         <!-- Traditional Software -->
         <div class="diff-card-standard">
-          <div style="font-size: 0.85rem; font-weight: 800; color: #64748B; text-transform: uppercase; margin-bottom: var(--space-3);">
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-3);">
             برامج الـ HR التقليدية
           </div>
-          <h3 style="font-size: 1.4rem; margin-bottom: var(--space-4); color: #334155;">تسجيل البيانات فقط</h3>
-          <p style="font-size: 0.95rem; color: #64748B; margin-bottom: var(--space-6);">
+          <h3 style="font-size: 1.4rem; margin-bottom: var(--space-4); color: var(--text-primary);">تسجيل البيانات فقط</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: var(--space-6);">
             مكان بتسجل فيه بيانات الموظف، وتسحب منه شيت حضور آخر الشهر، وتضطر تدخل بنفسك تدوّر على التقارير وسط جداول معقدة وقوائم لا تنتهي.
           </p>
-          <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #475569;">
+          <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--text-secondary);">
             <li>✕ محتاجة تدريب طويل وممل للموظفين</li>
             <li>✕ مفيش أي ربط ذكي مع اتخاذ القرار اليومي</li>
             <li>✕ لازم تفتح اللابتوب وتدخل اليوزر والباسورد عشان تعرف مين اتأخر</li>
@@ -430,7 +535,7 @@
           <h3 style="font-size: 1.6rem; margin-bottom: var(--space-4); color: #FFFFFF;">
             نظام HR + إدارة تشغيل + AI Assistant + 10 Blueprints
           </h3>
-          <p style="font-size: 1rem; color: #94A3B8; margin-bottom: var(--space-6);">
+          <p style="font-size: 1rem; color: #CBD5E1; margin-bottom: var(--space-6);">
             HumAi مش بس بيسجل... هو بيحلل البيانات اللحظية، وبيخليك تسأل وتنفذ من واتساب، وبيديك مع السيستم 10 قوالب تشغيل وإدارة احترافية لحل أصعب مشاكل الموظفين.
           </p>
           <ul style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; color: #E2E8F0;">
@@ -464,7 +569,7 @@
       <div class="section-header">
         <div class="eyebrow eyebrow-dark">الميزة الثورية</div>
         <h2>قابل المدير التنفيذي اللي عايش جوه واتساب بتاعك.</h2>
-        <p class="text-lead" style="color: #94A3B8;">
+        <p class="text-lead" style="color: var(--text-secondary);">
           <strong>اسأل. قرر. نفّذ.</strong> من غير ما تفتح الداشبورد أو تستنى حد يجهزلك تقرير. المساعد بيفهمك باللهجة المصرية ومربوط ببيانات شركتك مباشرة.
         </p>
       </div>
@@ -523,7 +628,7 @@
                 <div class="wa-status">مساعد واتساب التنفيذي • مشفر وآمن</div>
               </div>
             </div>
-            <div style="color: #10B981; font-size: 0.8rem; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 99px;">
+            <div style="color: var(--brand-emerald); font-size: 0.8rem; font-weight: 700; background: rgba(16,185,129,0.12); padding: 4px 10px; border-radius: 99px;">
               تجربة حية تفاعلية
             </div>
           </div>
@@ -590,7 +695,7 @@
       <div class="era-contrast">
         <!-- Traditional Way -->
         <div class="era-card era-traditional">
-          <div style="font-size: 0.85rem; font-weight: 800; color: #DC2626; text-transform: uppercase;">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #EF4444; text-transform: uppercase;">
             الشركة التقليدية (6 خطوات بطيئة)
           </div>
           <h4 style="margin-top: var(--space-2); font-size: 1.25rem;">عشان تاخد قرار بسيط زي مكافأة أو إجازة:</h4>
@@ -632,11 +737,11 @@
 
           <div class="era-steps">
             <div class="era-step">
-              <span class="era-step-num" style="background: #10B981; color: #FFFFFF;">1</span>
+              <span class="era-step-num" style="background: var(--brand-emerald); color: #FFFFFF;">1</span>
               <span>تبعت فويس نوت أو رسالة على واتساب: "ضيف 500 جنيه مكافأة لمحمود عشان قفل التارجت".</span>
             </div>
             <div class="era-step">
-              <span class="era-step-num" style="background: #10B981; color: #FFFFFF;">2</span>
+              <span class="era-step-num" style="background: var(--brand-emerald); color: #FFFFFF;">2</span>
               <span>الـ AI يراجع التارجت فوراً، يجهز العملية، وبضغطة "تأكيد" تنزل المكافأة في مسير الرواتب مع توثيق رسمي.</span>
             </div>
           </div>
@@ -971,10 +1076,10 @@
           <p>
             اشتراك واحد بيجمعلك: نظام HR متكامل + إدارة عمليات ومواقع جغرافية + مساعد تنفيذي ذكي على واتساب + 10 قوالب إدارية جاهزة.
           </p>
-          <div style="font-size: 2.5rem; font-weight: 900; color: #10B981; margin-bottom: var(--space-2);">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--brand-emerald); margin-bottom: var(--space-2);">
             3,800 جنيه
           </div>
-          <div style="color: #94A3B8; font-size: 0.95rem; margin-bottom: var(--space-6);">
+          <div style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-6);">
             للسيستم بالكامل + الـ 10 Blueprints مجانًا + أول شهر للـ AI مجانًا.
           </div>
           <a href="#pricing" class="btn btn-primary" style="width: 100%;" data-analytics-event="click_start_trial" data-analytics-location="roi_card">
@@ -1015,11 +1120,11 @@
 
           <div class="pricing-header">
             <div>
-              <div style="font-size: 0.85rem; font-weight: 800; color: #10B981; text-transform: uppercase;">
+              <div style="font-size: 0.85rem; font-weight: 800; color: var(--brand-emerald); text-transform: uppercase;">
                 منظومة التشغيل الذكية
               </div>
-              <h3 style="font-size: 2rem; color: #1F2937; margin-top: 4px;">HumAi Core Platform</h3>
-              <p style="color: #64748B; font-size: 0.95rem; margin-top: 4px;">
+              <h3 style="font-size: 2rem; color: var(--text-primary); margin-top: 4px;">HumAi Core Platform</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">
                 النظام الأساسي المتكامل لإدارة الموظفين والعمليات مع كافة الصلاحيات.
               </p>
             </div>
@@ -1040,24 +1145,24 @@
             </div>
 
             <div class="offer-layer-box highlight">
-              <div class="offer-layer-tag" style="color: #047857;">هدية حصرية متضمنة</div>
+              <div class="offer-layer-tag" style="color: var(--brand-emerald);">هدية حصرية متضمنة</div>
               <div class="offer-layer-title">10 Management Blueprints</div>
-              <div class="offer-layer-price" style="color: #047857;">مجانًا (قيمة مضافة)</div>
+              <div class="offer-layer-price" style="color: var(--brand-emerald);">مجانًا (قيمة مضافة)</div>
             </div>
 
             <div class="offer-layer-box highlight">
-              <div class="offer-layer-tag" style="color: #047857;">مساعد واتساب الذكي</div>
+              <div class="offer-layer-tag" style="color: var(--brand-emerald);">مساعد واتساب الذكي</div>
               <div class="offer-layer-title">AI Executive Assistant</div>
-              <div class="offer-layer-price" style="color: #047857;">أول شهر مجانًا بالكامل</div>
+              <div class="offer-layer-price" style="color: var(--brand-emerald);">أول شهر مجانًا بالكامل</div>
             </div>
           </div>
 
           <!-- Post-trial AI Pricing Detail Box -->
-          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2);">
-            <div style="font-size: 0.9rem; color: #475569;">
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-8); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2);">
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">
               <strong>تجديد مساعد واتساب الذكي (AI Assistant) بعد الشهر المجاني:</strong>
             </div>
-            <div style="font-weight: 800; font-size: 1.1rem; color: #1F2937;">
+            <div style="font-weight: 800; font-size: 1.1rem; color: var(--text-primary);">
               <span id="pricing-ai-amount">4,000</span>
               <span id="pricing-ai-period">جنيه / سنويًا</span>
               <span id="pricing-savings-notice" class="badge-save" style="font-size: 0.8rem;">وفرت 3,200 جنيه مقارنة بالتجديد الشهري (600 ج/ش)</span>
@@ -1104,7 +1209,7 @@
             <a href="https://wa.me/201099887766?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A8%D8%AF%D8%A1%20%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20HumAi%20%D8%A7%D9%84%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" style="width: 100%; font-size: 1.2rem;" data-analytics-event="click_start_trial" data-analytics-location="pricing_card">
               ابدأ تجربتك المجانية الآن (تجربة كاملة)
             </a>
-            <div style="margin-top: var(--space-3); font-size: 0.85rem; color: #64748B;">
+            <div style="margin-top: var(--space-3); font-size: 0.85rem; color: var(--text-muted);">
               بدون بطاقة ائتمان مطلوبة • تفعيل فوري لمنظومتك خلال دقائق
             </div>
           </div>
@@ -1459,7 +1564,7 @@
           </a>
         </div>
 
-        <div style="color: #64748B; font-size: 0.9rem; margin-top: var(--space-4);">
+        <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: var(--space-4);">
           بدون أي تعقيد تشغيلي • بدون بطاقة ائتمان • دعم فني كامل أثناء الإعداد
         </div>
       </div>
@@ -1471,7 +1576,8 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="assets/logo/humai-logo-white.svg" alt="HumAi" style="height: 36px; width: auto;">
+          <img src="assets/logo/humai-logo-white.svg" alt="HumAi" class="nav-logo-white" style="height: 36px; width: auto;">
+          <img src="assets/logo/humai-logo.svg" alt="HumAi" class="nav-logo-dark" style="height: 36px; width: auto;">
           <p>
             المنظومة المتكاملة لإدارة الموارد البشرية والعمليات ومساعد الذكاء الاصطناعي التنفيذي عبر واتساب للشركات الصغيرة والمتوسطة.
           </p>
@@ -1500,7 +1606,7 @@
         <div class="footer-col">
           <h5>اللغة والدعم</h5>
           <div class="footer-links">
-            <a href="index.html" class="footer-link" style="color: #10B981; font-weight: 700;">العربية (الحالية)</a>
+            <a href="index.html" class="footer-link" style="color: var(--brand-emerald); font-weight: 700;">العربية (الحالية)</a>
             <a href="en/index.html" class="footer-link">English Version</a>
             <a href="https://wa.me/201099887766" target="_blank" rel="noopener noreferrer" class="footer-link">تواصل عبر واتساب</a>
           </div>
@@ -1509,7 +1615,7 @@
 
       <div class="footer-bottom">
         <div>جميع الحقوق محفوظة © 2026 منصة HumAi Platform.</div>
-        <div style="font-size: 0.85rem; color: #64748B;">
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
           مصممة للشركات الطموحة في مصر والشرق الأوسط.
         </div>
       </div>
@@ -1528,6 +1634,24 @@
       ابدأ الآن مجانًا
     </a>
   </div>
+
+  <!-- ========================================================================
+       Floating WhatsApp Button (In Corner with Ripple Effect)
+       ======================================================================== -->
+  <a href="https://wa.me/201099887766?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9%20HumAi" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="wa-floating-btn" 
+     id="wa-floating-btn" 
+     aria-label="تواصل معنا عبر واتساب" 
+     data-analytics-event="click_whatsapp" 
+     data-analytics-location="floating_corner">
+    <span class="wa-pulse-ring"></span>
+    <svg class="wa-floating-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.33c-.24.69-1.21 1.27-1.68 1.35-.44.08-.99.12-3.18-.75-2.62-1.04-4.32-3.71-4.45-3.89-.13-.17-1.07-1.42-1.07-2.72s.67-1.93.92-2.19c.24-.26.53-.33.71-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.23.54.77 1.88.84 2.02.07.14.11.31.02.5-.09.18-.14.3-.28.46-.14.16-.3.35-.43.47-.14.14-.29.3-.12.59.16.29.73 1.2 1.57 1.95 1.08.96 1.98 1.26 2.27 1.4.29.14.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.38-.24.64-.14.26.1.1.66 3.28 1.63.18.09.31.14.36.21.05.08.05.45-.19 1.14z"/>
+    </svg>
+    <span>تواصل عبر واتساب</span>
+  </a>
 
   <!-- Scripts -->
   <script src="js/analytics.js"></script>

@@ -1,35 +1,20 @@
+/* ==========================================================================
+   Design Tokens & CSS Variables — HumAi Landing Page
+   Default: DARK MODE ("Like The System") with seamless LIGHT MODE support
+   ========================================================================== */
+
 :root {
-  /* Brand Palette */
-  --brand-navy: #1F2937;
-  --brand-navy-dark: #111827;
-  --brand-navy-deep: #0B0F19;
-  --brand-navy-light: #374151;
-  
+  /* Brand Constants */
   --brand-emerald: #10B981;
   --brand-emerald-hover: #059669;
   --brand-emerald-dark: #047857;
   --brand-emerald-light: #ECFDF5;
   --brand-emerald-glow: rgba(16, 185, 129, 0.25);
-  --brand-emerald-subtle: rgba(16, 185, 129, 0.08);
+  --brand-emerald-subtle: rgba(16, 185, 129, 0.12);
 
-  /* Neutrals & Surfaces */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F8FAFC;
-  --bg-tertiary: #F1F5F9;
-  --bg-elevated: #FFFFFF;
-  --bg-dark-surface: #111827;
-  --bg-dark-surface-2: #1E293B;
-
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  --text-inverse: #FFFFFF;
-  --text-inverse-muted: #94A3B8;
-
-  --border-subtle: #E2E8F0;
-  --border-medium: #CBD5E1;
-  --border-dark: #334155;
-  --border-emerald: rgba(16, 185, 129, 0.3);
+  --brand-navy: #1F2937;
+  --brand-navy-dark: #111827;
+  --brand-navy-deep: #080C14;
 
   /* Status Colors */
   --status-success: #10B981;
@@ -37,15 +22,12 @@
   --status-danger: #EF4444;
   --status-info: #3B82F6;
 
-  /* WhatsApp Simulation Palette */
-  --wa-bg: #EFEAE2;
-  --wa-header: #075E54;
-  --wa-header-dark: #1F2937;
-  --wa-bubble-in: #FFFFFF;
-  --wa-bubble-out: #DCF8C6;
-  --wa-bubble-out-dark: #005C4B;
-  --wa-bubble-in-dark: #202C33;
-  --wa-accent: #25D366;
+  /* WhatsApp Colors */
+  --wa-green: #25D366;
+  --wa-green-hover: #20BA5A;
+  --wa-dark-bg: #0B1019;
+  --wa-bubble-user: #005C4B;
+  --wa-bubble-bot: #1E293B;
 
   /* Typography */
   --font-arabic: 'IBM Plex Sans Arabic', 'Cairo', system-ui, -apple-system, sans-serif;
@@ -73,15 +55,6 @@
   --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.18);
-  --shadow-emerald: 0 10px 25px -5px rgba(16, 185, 129, 0.25);
-  --shadow-dark: 0 20px 40px -15px rgba(11, 15, 25, 0.5);
-
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -91,4 +64,103 @@
   --container-max: 1240px;
   --container-narrow: 980px;
   --container-padding: 1.5rem;
+}
+
+/* ==========================================================================
+   DEFAULT THEME: DARK MODE (Matches System UI)
+   ========================================================================== */
+:root,
+html[data-theme="dark"] {
+  --bg-primary: #070A11;
+  --bg-secondary: #0D131F;
+  --bg-tertiary: #141D2D;
+  --bg-card: #0F1626;
+  --bg-card-hover: #162136;
+  --bg-elevated: #131B2A;
+
+  --nav-bg: rgba(7, 10, 17, 0.88);
+  --nav-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #070A11;
+  --text-inverse-muted: #475569;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-emerald: rgba(16, 185, 129, 0.35);
+
+  --eyebrow-bg: rgba(16, 185, 129, 0.12);
+  --eyebrow-color: #34D399;
+  --eyebrow-border: rgba(16, 185, 129, 0.25);
+
+  --trust-strip-bg: rgba(15, 22, 38, 0.7);
+  --trust-strip-border: rgba(255, 255, 255, 0.08);
+
+  --table-header-bg: #0D131F;
+  --table-border: rgba(255, 255, 255, 0.07);
+  --table-humai-bg: rgba(16, 185, 129, 0.08);
+  --table-humai-header: rgba(16, 185, 129, 0.15);
+  --table-humai-text: #6EE7B7;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 35px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.75);
+  --shadow-emerald: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
+
+  --logo-dark-display: none;
+  --logo-white-display: block;
+}
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDES (Optional User Toggle)
+   ========================================================================== */
+html[data-theme="light"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-elevated: #FFFFFF;
+
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-border: #E2E8F0;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+  --text-inverse-muted: #94A3B8;
+
+  --border-subtle: #E2E8F0;
+  --border-medium: #CBD5E1;
+  --border-card: #E2E8F0;
+  --border-emerald: rgba(16, 185, 129, 0.3);
+
+  --eyebrow-bg: #ECFDF5;
+  --eyebrow-color: #047857;
+  --eyebrow-border: rgba(16, 185, 129, 0.25);
+
+  --trust-strip-bg: rgba(255, 255, 255, 0.85);
+  --trust-strip-border: #E2E8F0;
+
+  --table-header-bg: #F8FAFC;
+  --table-border: #E2E8F0;
+  --table-humai-bg: #F0FDF4;
+  --table-humai-header: #DCFCE7;
+  --table-humai-text: #065F46;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.18);
+  --shadow-emerald: 0 10px 25px -5px rgba(16, 185, 129, 0.25);
+
+  --logo-dark-display: block;
+  --logo-white-display: none;
 }
