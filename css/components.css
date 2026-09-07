@@ -1830,11 +1830,24 @@ html[data-theme="light"] .cost-item {
     display: flex;
   }
 
-  /* Floating WhatsApp on mobile sits comfortably above the sticky bottom bar */
+  /* Floating WhatsApp on mobile: sleek circle with just the icon */
   .wa-floating-btn {
     bottom: 74px;
     inset-inline-end: 16px;
-    padding: 10px 14px;
-    font-size: 0.85rem;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+  }
+
+  .wa-floating-btn .wa-floating-label {
+    display: none;
+  }
+
+  .wa-floating-btn .wa-floating-icon {
+    width: 28px;
+    height: 28px;
   }
 }
